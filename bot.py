@@ -8,8 +8,12 @@ GUILD_ID = discord.Object(id=1529995986770989278)  # paste your actual number, n
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
-sad_images = ["images/sad_imgs/crying.jpg"]  #sad images
+sad_images = ["images/sad_imgs/sad1.jpg", "images/sad_imgs/sad2.jpg", "images/sad_imgs/sad3.jpg", "images/sad_imgs/sad4.jpg"]  #sad images
 tea_images = ["images/tea_imgs/tea1.jpg", "images/tea_imgs/tea2.jpg", "images/tea_imgs/tea3.jpg", "images/tea_imgs/tea4.jpg"]  #tea images
+mad_images = ["images/mad_imgs/mad1.jpg", "images/mad_imgs/mad2.jpg", "images/mad_imgs/mad3.jpg", "images/mad_imgs/mad4.jpg"]  #mad images
+happy_images = ["images/happy_imgs/happy1.jpg", "images/happy_imgs/happy2.jpg", "images/happy_imgs/happy3.jpg", "images/happy_imgs/happy4.jpg"]  #happy images
+excited_images = ["images/excited_imgs/excited1.jpg", "images/excited_imgs/excited2.jpg", "images/excited_imgs/excited3.jpg", "images/excited_imgs/excited4.jpg"]  #excited images
+
 intents = discord.Intents.default()
 intents.message_content = True  # needed if your bot reads message text
 bot = commands.Bot(command_prefix="!", intents=intents) 
@@ -48,6 +52,24 @@ async def slash_sad(interaction: discord.Interaction):
 async def slash_tea(interaction: discord.Interaction):
     await interaction.response.send_message("OOoooOOo TEA!")  # send an initial response to acknowledge the command
     random_img = random.choice(tea_images)  # make sure one of the tea images is in the same directory
+    await interaction.followup.send(file=discord.File(random_img))
+
+@bot.tree.command(name="mad", description="Replies with a random Mad Image")
+async def slash_mad(interaction: discord.Interaction):
+    await interaction.response.send_message("grrrr...")  # send an initial response to acknowledge the command
+    random_img = random.choice(mad_images)  # make sure one of the mad images is in the same directory
+    await interaction.followup.send(file=discord.File(random_img))
+
+@bot.tree.command(name="happy", description="Replies with a random Happy Image")
+async def slash_happy(interaction: discord.Interaction):
+    await interaction.response.send_message("the happiest eva!")  # send an initial response to acknowledge the command
+    random_img = random.choice(happy_images)  # make sure one of the happy images is in the same directory
+    await interaction.followup.send(file=discord.File(random_img))
+
+@bot.tree.command(name="excited", description="Replies with a random Excited Image")
+async def slash_excited(interaction: discord.Interaction):
+    await interaction.response.send_message("AHHHHHHHH!")  # send an initial response to acknowledge the command
+    random_img = random.choice(excited_images)  # make sure one of the excited images is in the same directory
     await interaction.followup.send(file=discord.File(random_img))
 
 bot.run(TOKEN)
