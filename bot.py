@@ -13,6 +13,7 @@ tea_images = ["images/tea_imgs/tea1.jpg", "images/tea_imgs/tea2.jpg", "images/te
 mad_images = ["images/mad_imgs/mad1.jpg", "images/mad_imgs/mad2.jpg", "images/mad_imgs/mad3.jpg", "images/mad_imgs/mad4.jpg"]  #mad images
 happy_images = ["images/happy_imgs/happy1.jpg", "images/happy_imgs/happy2.jpg", "images/happy_imgs/happy3.jpg", "images/happy_imgs/happy4.jpg"]  #happy images
 excited_images = ["images/excited_imgs/excited1.jpg", "images/excited_imgs/excited2.jpg", "images/excited_imgs/excited3.jpg", "images/excited_imgs/excited4.jpg"]  #excited images
+scream_images = ["images/scream_imgs/scream1.jpg", "images/scream_imgs/scream2.jpg", "images/scream_imgs/scream3.jpg", "images/scream_imgs/scream4.jpg"]  #scream images
 
 intents = discord.Intents.default()
 intents.message_content = True  # needed if your bot reads message text
@@ -68,8 +69,14 @@ async def slash_happy(interaction: discord.Interaction):
 
 @bot.tree.command(name="excited", description="Replies with a random Excited Image")
 async def slash_excited(interaction: discord.Interaction):
-    await interaction.response.send_message("AHHHHHHHH!")  # send an initial response to acknowledge the command
+    await interaction.response.send_message("OMGEE!")  # send an initial response to acknowledge the command
     random_img = random.choice(excited_images)  # make sure one of the excited images is in the same directory
+    await interaction.followup.send(file=discord.File(random_img))
+
+@bot.tree.command(name="scream", description="Replies with a random Scream Image")
+async def slash_scream(interaction: discord.Interaction):
+    await interaction.response.send_message("AAAAHHHH!")  # send an initial response to acknowledge the command
+    random_img = random.choice(scream_images)  # make sure one of the scream images is in the same directory
     await interaction.followup.send(file=discord.File(random_img))
 
 bot.run(TOKEN)
