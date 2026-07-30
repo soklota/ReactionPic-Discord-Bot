@@ -1,1 +1,3 @@
 This is a Discord bot that returns a reaction image relating to a mood selected by the user.
+
+![Alt](BotExample.png)
